@@ -160,7 +160,6 @@ esac
 # Enable color support for ls and add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='lsd'
 	#alias ls='ls --color=auto'
 	#alias dir='dir --color=auto'
 	#alias vdir='vdir --color=auto'
@@ -259,3 +258,5 @@ ensure_tmux_is_running() {
 ensure_tmux_is_running
 
 source "$HOME/bin/projetos/pesquisa/pesquisa"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
