@@ -52,23 +52,23 @@ fi
 # Function to create a rainbow-colored hostname
 get_rainbow_hostname() {
   local text
-  text=$(hostname)  # Get the actual hostname
-  
+  text=$(hostname) # Get the actual hostname
+
   local colors
-  colors=(196 202 208 226 118 39 99 201)  # Red, Orange, Yellow, Green, Blue, Indigo, Violet
-  
+  colors=(196 202 208 226 118 39 99 201) # Red, Orange, Yellow, Green, Blue, Indigo, Violet
+
   local rainbow=""
   local index=0
-  
+
   for ((i = 0; i < ${#text}; i++)); do
     local letter
     letter="${text:i:1}"
     rainbow+=$(tput setaf "${colors[index]}")
     rainbow+="$letter"
-    index=$(((index + 1) % ${#colors[@]}))  # Cycle through colors
+    index=$(((index + 1) % ${#colors[@]})) # Cycle through colors
   done
-  
-  rainbow+=$(tput sgr0)  # Reset formatting
+
+  rainbow+=$(tput sgr0) # Reset formatting
   echo "$rainbow"
 }
 
@@ -141,12 +141,13 @@ if [ "$color_prompt" = yes ]; then
 
     # Build the PS1 prompt dynamically with status code color
     PS1="\[${bold}\]\n"
+
     PS1+="$venv_name"
-    PS1+="\[${orange}\]\u" # Username
-    PS1+="\[${white}\] at "
-    PS1+="\[${reset}${rainbow_hostname}${reset}\]" # Hostname
-    PS1+="\[${white}\] in "
-    PS1+="\[${green}\]\W" # Current working directory
+    PS1+="\[${orange}${bold}\]\u"                         # Username in bold
+    PS1+="\[${white}${bold}\] at "                        # "at" in bold
+    PS1+="\[${reset}${bold}${rainbow_hostname}${reset}\]" # Hostname in bold
+    PS1+="\[${white}${bold}\] in "                        # "in" in bold
+    PS1+="\[${green}${bold}\]\W"                          # Current working directory in bold
 
     # Append Git branch and SHA after the branch name
     local git_branch
