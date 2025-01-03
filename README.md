@@ -22,20 +22,18 @@ Ensure you have the following installed:
 
 ## Setup guide
 
-Clone the repository and change directory to it. The dotfiles directory needs to be in the home directory.
+* Back up your files to another place in the computer and delete the originals.
+
+* The dotfiles directory needs to be in the home directory.
+
+* Clone the repository and change directory to it. 
 
 ```bash
 $ git clone git@github.com:etbcf/dotfiles-main.git ~/dotfiles
 $ cd ~/dotfiles
 ```
 
-### Use this command to move all the files into the Stow directory
-
-```
-$ stow --adopt .
-```
-
-### If you prefer, move the files into the dotfiles directory and issue the following command
+### Lastly issue the following command
 
 ```bash
 $ stow .
