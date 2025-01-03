@@ -11,13 +11,13 @@ Ensure you have the following installed:
 ### Git
 
 ```bash
-# apt-get install git
+$ sudo apt-get install git
 ```
 
 ### Stow
 
 ```bash
-# apt-get install stow
+$ sudo apt-get install stow
 ```
 
 ## Setup guide
