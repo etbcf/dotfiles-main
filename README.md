@@ -26,7 +26,7 @@ Clone the repository and change directory to it
 
 ```bash
 $ git clone git@github.com:etbcf/dotfiles-main.git ~/dotfiles
-cd ~/dotfiles
+$ cd ~/dotfiles
 ```
 
 ### Use this command to move all the files into the Stow directory
