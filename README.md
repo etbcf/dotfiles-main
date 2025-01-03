@@ -22,7 +22,7 @@ Ensure you have the following installed:
 
 ## Setup guide
 
-Clone the repository and change directory to it
+Clone the repository and change directory to it. The dotfiles directory needs to be in the home directory.
 
 ```bash
 $ git clone git@github.com:etbcf/dotfiles-main.git ~/dotfiles
