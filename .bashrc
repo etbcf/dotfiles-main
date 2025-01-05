@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -32,12 +32,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -46,14 +46,14 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 # Function to create a rainbow-colored hostname
@@ -172,29 +172,28 @@ if [ "$color_prompt" = yes ]; then
   export PROMPT_COMMAND='prompt_command' # Set the prompt command to run before each prompt
 
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -215,7 +214,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -236,7 +235,6 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/my_neovim/nvim-linux64/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/lazy-rocks/bin:$PATH"
-
 
 # Move a file to Trash
 function trash() {
@@ -275,26 +273,24 @@ ensure_tmux_is_running() {
   fi
 }
 
-ensure_tmux_is_running
+# ensure_tmux_is_running
 
 source "$HOME/bin/pesquisa/pesquisa"
 
 . "$HOME/.cargo/env"
 
 # pip bash completion start
-_pip_completion()
-{
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
+_pip_completion() {
+  COMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" \
+    COMP_CWORD=$COMP_CWORD \
+    PIP_AUTO_COMPLETE=1 $1 2>/dev/null))
 }
 complete -o default -F _pip_completion pip
 # pip bash completion end
 
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
